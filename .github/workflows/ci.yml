@@ -3,7 +3,7 @@ name: Continuous Integration (CI)
 ## Run CI jobs on all branches by default
 on:
   push:
-    pull_request:
+  pull_request:
 
 jobs:
   test:
@@ -18,5 +18,9 @@ jobs:
           distribution: "temurin"
           java-version: "21"
           cache: "gradle"
+      - name: Set gradlew as executable
+
+        run: chmod +x ./gradlew
       - name: Run unit tests
+
         run: ./gradlew test
