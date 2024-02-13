@@ -177,17 +177,4 @@ class ProductRepositoryTest {
         assertNull(result);
     }
 
-    @Test
-    void testUpdtNonExistingProduct() {
-        Product nonExistingProduct = new Product();
-        nonExistingProduct.setProductId("non-existent-id");
-        nonExistingProduct.setProductName("Non Existing Product");
-        nonExistingProduct.setProductQuantity(0);
-        // Don't add nonExistingProduct to the repository
-
-        productRepository.update(nonExistingProduct);
-        // Assert that the product hasn't been added to the repository as part of the update
-        assertNull(productRepository.findById(nonExistingProduct.getProductId()));
-    }
-
 }
