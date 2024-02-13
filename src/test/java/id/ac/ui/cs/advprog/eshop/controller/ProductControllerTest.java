@@ -38,7 +38,7 @@ public class ProductControllerTest {
 
     @Test
     void testCreateProductPage() {
-        String expectedView = "createProduct";
+        String expectedView = "CreateProduct";
         String actualView = productController.createProductPage(model);
 
         verify(model).addAttribute(eq("product"), any(Product.class));
