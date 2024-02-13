@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
 
@@ -149,36 +148,46 @@ class ProductRepositoryTest {
 
     @Test
     void testUpdateNonExistingProduct() {
-        // Create a product
-        Product product = new Product();
-        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(70);
-        productRepository.create(product);
+        Product existingProduct = new Product();
+        existingProduct.setProductId("existing-id");
+        existingProduct.setProductName("Existing Product");
+        existingProduct.setProductQuantity(10);
+        productRepository.create(existingProduct);
 
-        // Attempt to update a non-existing product
-        String nonExistingId = "3a7c0d8e-9b21-4f4e-7d8a-2c9e8b1d0f4e";
-        String updatedName = "Sampo Cap Ria";
-        int updatedQuantity = 40;
-        Product updatedProduct = new Product();
-        updatedProduct.setProductId(nonExistingId);
-        updatedProduct.setProductName(updatedName);
-        updatedProduct.setProductQuantity(updatedQuantity);
-        productRepository.update(updatedProduct);
+        Product nonExistingProduct = new Product();
+        nonExistingProduct.setProductId("non-existent-id");
+        nonExistingProduct.setProductName("Non Existing Product");
+        nonExistingProduct.setProductQuantity(20);
 
-        // Check if the product is not updated
-        Iterator<Product> productIterator = productRepository.findAll();
-        boolean updated = false;
-        while (productIterator.hasNext()) {
-            Product curProduct = productIterator.next();
-            if (curProduct.getProductId().equals("eb558e9f-1c39-460e-8860-71af6af63bd6")) {
-                assertEquals("Sampo Cap Bambang", curProduct.getProductName());
-                assertEquals(70, curProduct.getProductQuantity());
-            } else if (curProduct.getProductId().equals(nonExistingId)) {
-                updated = true;
-            }
-        }
-        assertFalse(updated, "Non-existing product should not be updated.");
+        productRepository.update(nonExistingProduct); // This should not affect the list
+
+        Product foundProduct = productRepository.findById("existing-id");
+        assertNotNull(foundProduct);
+        assertEquals("Existing Product", foundProduct.getProductName());
+        assertEquals(10, foundProduct.getProductQuantity());
+
+        Product notFoundProduct = productRepository.findById("non-existent-id");
+        assertNull(notFoundProduct); // This should assert that the non-existing product was not added
+    }
+
+    @Test
+    void testFindByIdWithNonExistingId() {
+        String nonExistingId = "non-existent-id";
+        Product result = productRepository.findById(nonExistingId);
+        assertNull(result);
+    }
+
+    @Test
+    void testUpdtNonExistingProduct() {
+        Product nonExistingProduct = new Product();
+        nonExistingProduct.setProductId("non-existent-id");
+        nonExistingProduct.setProductName("Non Existing Product");
+        nonExistingProduct.setProductQuantity(0);
+        // Don't add nonExistingProduct to the repository
+
+        productRepository.update(nonExistingProduct);
+        // Assert that the product hasn't been added to the repository as part of the update
+        assertNull(productRepository.findById(nonExistingProduct.getProductId()));
     }
 
 }
