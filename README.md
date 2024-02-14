@@ -40,3 +40,5 @@ When adding two new features to our Spring Boot application, I focused on writin
 2. In my situation, the current solution meets the requirements of CI/CD. It fit the requirements of CI because I integrated my programme using testing tools such as OSSF Scorecard, JUnit, JaCoCo, and SonarCloud. Following the integration process, my app continuously distributes the most recent version of the app based on the repository, which meets the criteria of continuous deployment.
 
 </details>
+
+---
