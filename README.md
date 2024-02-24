@@ -42,3 +42,45 @@ When adding two new features to our Spring Boot application, I focused on writin
 </details>
 
 ---
+
+<details>
+<summary>Module 03: OO Principles & Software Maintainability</summary>
+
+## Questions and Answers
+
+### -> Reflection
+
+1. Explain what principles you apply to your project!
+
+In the project, I apply the following SOLID principles:
+
+- Single Responsibility Principle (SRP): Each class has a single reason to change, focusing on a single aspect of the system. For instance, the CarRepository class is dedicated to handling database operations for car entities, including creating, reading, updating, and deleting records.
+
+- Open/Closed Principle (OCP): The system is designed to allow for extensions without modifying existing code. For example, the ProductService class's method for creating products is designed to handle new product IDs in a flexible manner, allowing for easy addition of new functionality.
+
+- Liskov Substitution Principle (LSP): We ensure that subclasses can replace their superclass without affecting the application's correctness. This is exemplified by maintaining clear separation and functionality between CarController and ProductController, avoiding inheritance where it's not necessary to ensure substitutability.
+
+
+2. Explain the advantages of applying SOLID principles to your project with examples.
+
+Applying SOLID principles offers several advantages:
+
+- Improved maintainability: By adhering to SRP, for example, the CarRepository class is focused solely on persistence operations related to cars. This makes it easier to understand, maintain, and modify without impacting other areas of the system.
+
+- Enhanced scalability: The OCP facilitates the addition of new features without altering existing code. In the case of ProductService, new types of products can be added to the system with minimal changes, supporting scalability.
+
+- Greater flexibility in development: LSP ensures that the system's components are interchangeable. For example, by separating CarController and ProductController, developers can introduce new controllers for different product types without altering the existing logic, providing flexibility.
+
+3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+Not applying SOLID principles can lead to several disadvantages:
+
+- Increased complexity and maintenance challenges: Without SRP, a class handling multiple responsibilities becomes complex and harder to maintain. Changes in one functionality might require changes in unrelated features, increasing the risk of bugs.
+
+- Difficulty in extending functionality: Ignoring OCP means the system is not prepared for extensions without modifications to existing code. This can lead to a brittle architecture where adding new features requires changing existing functionalities, potentially introducing errors.
+
+- Reduced flexibility and more fragile design: Not adhering to LSP can result in a design where subclasses cannot effectively replace their superclass, limiting the system's flexibility. This rigid structure makes it harder to evolve the system over time, as changes in base classes could necessitate widespread modifications throughout the codebase.
+
+</details>
+
+---
