@@ -84,3 +84,19 @@ Not applying SOLID principles can lead to several disadvantages:
 </details>
 
 ---
+
+---
+<details>
+<summary>Module 04: Coding Standards</summary>
+
+## Questions and Answers
+
+### -> Reflection
+
+1. Discussing test-driven development (TDD), I find Percival's (2017) methods to be highly beneficial to my career in development. Crafting tests prior to coding urged me to follow a systematic path and give extra importance to considering edge and specific cases. This led to my code gaining strength and the features I operated on became clearer. Still, I felt there were parts where I could have excelled more. To provide a thoroughness, my aim is to spend more time pondering over the scope of future tests and exploring different scenarios. This action will enhance the overall quality of my code whilst also minimizing time spent on debugs.
+
+2. When I think back on the unit tests I took during the course, I think I mostly followed the F.I.R.S.T. guidelines. My testing were timely, healthy, isolated, rapid, and accurate. I am aware that I can always do better, though. For instance, there were dependent variables that might have impacted the outcomes, even if the two trials were as distinct from one another as possible. The next time, I want to make sure that every unit test operates independently of the others by further separating the tests. I'll also make an effort to make my tests more self-authenticating so that the results of passes and fails are completely reported without requiring manual interpretation. This will streamline the development process and enhance the automation of my test suite.
+
+</details>
+
+---
